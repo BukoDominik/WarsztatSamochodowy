@@ -63,6 +63,17 @@ public class Employee {
 	public Employee() {
 		super();
 	}
+	public Employee(String firstName, String secondName, String adress, String phoneNumber, String note, double manHour,
+			int id) {
+		super();
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.adress = adress;
+		this.phoneNumber = phoneNumber;
+		this.note = note;
+		this.manHour = manHour;
+		this.id = id;
+	}
 	
 	
 }

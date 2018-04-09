@@ -113,7 +113,29 @@ public class OrderDao {
 				if (rs.next()) {
 					Order.setId(rs.getInt(1));
 				}
-			} 
+			}else {
+				String sql = "UPDATE orders SET orderDate=?, orderStart=?, responsibleEmployee=?, orderDescribe=?, reparationDescribe=?, status=?, vehicle=?, orderPrice=?, priceOfComponents=?, manhour=?, hours=? WHERE id=?";
+				String generatedColumns[] = { "ID" };
+				PreparedStatement preparedStatement;
+				preparedStatement = connection.prepareStatement(sql, generatedColumns);
+				preparedStatement.setDate(1, Order.getOrderDate());
+				preparedStatement.setDate(2, Order.getOrderStart());
+				preparedStatement.setInt(3, Order.getResponsibleEmployee());
+				preparedStatement.setString(4, Order.getOrderDescribe());
+				preparedStatement.setString(5, Order.getReparationDescribe());
+				preparedStatement.setString(6, Order.getStatus());
+				preparedStatement.setInt(7, Order.getVehicle());
+				double manhour = getEmployeeManhour(connection, Order);
+				double hour = Order.getHours();
+				double orderPrice = countOrderPrice(manhour, hour);
+				preparedStatement.setDouble(8, orderPrice);
+				preparedStatement.setDouble(9, Order.getPriceOfComponents());
+				preparedStatement.setDouble(10, manhour);
+				preparedStatement.setDouble(11, Order.getHours());
+				preparedStatement.setInt(12, Order.getId());
+				preparedStatement.executeUpdate();
+				ResultSet rs = preparedStatement.getGeneratedKeys();
+			}
 			}
 			catch (Exception ex) {
 

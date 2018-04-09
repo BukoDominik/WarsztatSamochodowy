@@ -39,6 +39,14 @@ public class Customer {
 		this.secondName = secondName;
 		this.birthday = birthday;
 	}
+	
+	public Customer(String firstName, String secondName, Date birthday, int id) {
+		super();
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.birthday = birthday;
+		this.id = id;
+	}
 	public Customer() {
 		super();
 	}

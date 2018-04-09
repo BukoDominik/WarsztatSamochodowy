@@ -95,6 +95,20 @@ public class EmployeeDao {
 				if (rs.next()) {
 					employee.setId(rs.getInt(1));
 				}
+			} else {
+				String sql = "UPDATE employee SET firstName =?, secondName =?, adress =?, phoneNumber =?, note =?, manhour =? WHERE id =?";
+				String generatedColumns[] = { "ID" };
+				PreparedStatement preparedStatement;
+				preparedStatement = connection.prepareStatement(sql, generatedColumns);
+				preparedStatement.setString(1, employee.getFirstName());
+				preparedStatement.setString(2, employee.getSecondName());
+				preparedStatement.setString(3, employee.getAdress());
+				preparedStatement.setString(4, employee.getPhoneNumber());
+				preparedStatement.setString(5, employee.getNote());
+				preparedStatement.setDouble(6, employee.getManHour());
+				preparedStatement.setInt(7, employee.getId());
+				preparedStatement.executeUpdate();
+				ResultSet rs = preparedStatement.getGeneratedKeys();
 			}
 			}
 		}

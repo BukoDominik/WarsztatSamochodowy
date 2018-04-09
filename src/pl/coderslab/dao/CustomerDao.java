@@ -76,6 +76,7 @@ public class CustomerDao {
 		try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
 		if (customer.getId() == 0) {
 			String sql = "INSERT INTO customers(firstName, secondName, birthday) VALUES (?, ?, ?)";
+			System.out.println("WLAZLEM TEZ W INSERTA");
 			String generatedColumns[] = { "ID" };
 			PreparedStatement preparedStatement;
 			preparedStatement = connection.prepareStatement(sql, generatedColumns);
@@ -87,6 +88,20 @@ public class CustomerDao {
 			if (rs.next()) {
 			 customer.setId(rs.getInt(1));
 			}
+		} else {
+			System.out.println("CUSTOMER DAO - YPDATE" + customer.getId());
+			System.out.println(customer.getFirstName());
+			System.out.println(customer.getSecondName());
+			System.out.println(customer.getBirthday());
+			String sql = "UPDATE customers SET firstName=?, secondName=?, birthday=? WHERE id = ?";
+			PreparedStatement preparedStatement;
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, customer.getFirstName());
+			preparedStatement.setString(2, customer.getSecondName());
+			preparedStatement.setDate(3, customer.getBirthday());
+			preparedStatement.setInt(4, customer.getId());
+			preparedStatement.executeUpdate();
+			
 		}
 		}
 	}
@@ -109,5 +124,40 @@ public class CustomerDao {
 		uArray = solutions.toArray(uArray);
 		return solutions;
 	}
+	}
+	static public void delete(int id) {
+		try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
+			String sql = "DELETE FROM customers WHERE id = ?";
+			PreparedStatement preparedStatement;
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public Customer loadById(int id) {
+		try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
+		String sql = "SELECT * FROM customers WHERE id = ?";
+		PreparedStatement preparedStatement;
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(1, id);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			Customer loadedCustomer = new Customer();
+			loadedCustomer.setId(resultSet.getInt("id"));
+			loadedCustomer.setBirthday(resultSet.getDate("birthday"));
+			loadedCustomer.setFirstName(resultSet.getString("firstName"));
+			loadedCustomer.setSecondName(resultSet.getString("secondName"));
+			return loadedCustomer;
+		}
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return null;
 	}
 }

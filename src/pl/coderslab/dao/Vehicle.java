@@ -54,6 +54,16 @@ public class Vehicle {
 		this.registrationNumber = registrationNumber;
 		this.nextVisit = nextVisit;
 	}
+	
+	public Vehicle(String model, String mark, Date productionYear, String registrationNumber, Date nextVisit, int id) {
+		super();
+		this.model = model;
+		this.mark = mark;
+		this.productionYear = productionYear;
+		this.registrationNumber = registrationNumber;
+		this.nextVisit = nextVisit;
+		this.id = id;
+	}
 	public Vehicle() {
 		super();
 	}

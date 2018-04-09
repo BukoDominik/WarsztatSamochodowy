@@ -11,49 +11,44 @@
 </head>
 <body>
 <%@ include file="templates/header.jsp" %>
-<p> DODAJ CUSTOMERA BULWO ---------------------------</p>
-	<form action='CustomerList' method='post'>
-	<label>Imie  <input name='firstName'/></label><br/>
-	<label>Nazwisko<input name='secondName'/></label><br/> 
-	<label>Data urodzenia(MM/dd/yyyy) <input name='birthday' type='date'/></label><br/>
-	<input type='submit' value='Add customer'/> 
-	</form>
+
 	
-	<p> DODAJ VEHICLE ---------------------------------</p>
-	<form action='VehicleList' method='post'>
-	<label>Model  <input name='model'/></label><br/>
-	<label>Marka<input name='mark'/></label><br/> 
-	<label>Rok Produkcji(MM/dd/yyyy) <input name='productionYear' type='date'/></label><br/>
-	<label>Numer rejestracji<input name='registrationNumber'/></label><br/> 
-	<label>Następna Wyzyta(MM/dd/yyyy) <input name='nextVisit' type='date'/></label><br/>
-	<input type='submit' value='Add vehicler'/> 
-	</form>
-	
+
 	<p> DODAJ ORDER ------------------------------------</p>
+	<div class="container well">
 	<form action='OrderList' method='post'>
-	<label>Data przyjęcia <input name='orderDate' type='date'/></label><br/>
-	<label>Rozpoczęcie zgłoszenia <input name='orderStart' type='date'/></label><br/>
-	<label>ID pracownika<input type="number" min="0" step='1' name='responsibleEmployee'/></label><br/>
-	<label>Opis Zgłoszenia<input name='orderDescribe'/></label><br/>
-	<label>Opis naprawy<input name='reparationDescribe'/></label><br/>
-	<label>Status<input type="number" min="0" step='1' name='status'/></label><br/>
-	<label>ID pojazdu<input type="number" min="0" step='1' name='vehicle'/></label><br/>
-	<label>Cena komponentow<input type="number" min="0" step='0.1' name='priceOfComponents'/></label><br/>
-	<label>Godziny<input type="number" min="0" step='0.1' name='hours'/></label><br/>
-	<input type='submit' value='Add customer'/> 
+	<legend>Dodaj zlecenie</legend>
+	<div class="form-group">
+	<label>Data przyjęcia <input class="form-control" name='orderDate' type='date'/></label><br/>
+	<label>Rozpoczęcie zgłoszenia <input class="form-control" name='orderStart' type='date'/></label><br/>
+	<label>ID pracownika<input class="form-control" type="number" min="0" step='1' name='responsibleEmployee'/></label><br/>
+	<label>Opis Zgłoszenia<input class="form-control" name='orderDescribe'/></label><br/>
+	<label>Opis naprawy<input class="form-control" name='reparationDescribe'/></label><br/>
+	<label>Status<input class="form-control" type="number" min="0" step='1' name='status'/></label><br/>
+	<label>ID pojazdu<input class="form-control" type="number" min="0" step='1' name='vehicle'/></label><br/>
+	<label>Cena komponentow<input class="form-control" type="number" min="0" step='0.1' name='priceOfComponents'/></label><br/>
+	<label>Godziny<input class="form-control" type="number" min="0" step='0.1' name='hours'/></label><br/>
+	<input type='submit' class="btn btn-primary" value='Add customer'/> 
+	</div>
 	</form>
+	</div>
 	
 	
 	<p> DODAJ EMPLOYEE -----------------------------------------</p>
+	<div class="container well">
 	<form action='EmployeeList' method='post'>
-	<label>Imie  <input name='firstName'/></label><br/>
-	<label>Nazwisko<input name='secondName'/></label><br/> 
-	<label>Adres<input name='adress'/></label><br/> 
-	<label>Telefon<input name='phoneNumber'/></label><br/> 
-	<label>Note<input name='note'/></label><br/> 
-	<label>Roboczogodzina<input type="number" min="0" step='0.1' name='manhour'/></label><br/> 
-	<input type='submit' value='Add employee'/> 
+	<legend>Dodaj pracownika</legend>
+	<div class="form-group">
+	<label>Imie  <input class="form-control" name='firstName'/></label><br/>
+	<label>Nazwisko<input class="form-control" name='secondName'/></label><br/> 
+	<label>Adres<input class="form-control" name='adress'/></label><br/> 
+	<label>Telefon<input class="form-control" name='phoneNumber'/></label><br/> 
+	<label>Note<input class="form-control" name='note'/></label><br/> 
+	<label>Roboczogodzina<input class="form-control" type="number" min="0" step='0.1' name='manhour'/></label><br/> 
+	<input type='submit' class="btn btn-primary" value='Add employee'/> 
+	</div>
 	</form>
+	</div>
 		<%	
 			String classOfElements = request.getAttribute("nameOfList").toString();
 			if(classOfElements.equals("customers")){

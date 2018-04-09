@@ -94,6 +94,19 @@ public class VehicleDao {
 				if (rs.next()) {
 					Vehicle.setId(rs.getInt(1));
 				}
+			} else {
+				String sql = "UPDATE vehicles SET model=?, mark=?, productionYear=?, registrationNumber=?, nextVisit=? WHERE id=?";
+				String generatedColumns[] = { "ID" };
+				PreparedStatement preparedStatement;
+				preparedStatement = connection.prepareStatement(sql, generatedColumns);
+				preparedStatement.setString(1, Vehicle.getModel());
+				preparedStatement.setString(2, Vehicle.getMark());
+				preparedStatement.setDate(3, Vehicle.getProductionYear());
+				preparedStatement.setString(4, Vehicle.getRegistrationNumber());
+				preparedStatement.setDate(5, Vehicle.getNextVisit());
+				preparedStatement.setInt(6, Vehicle.getId());
+				preparedStatement.executeUpdate();
+				ResultSet rs = preparedStatement.getGeneratedKeys();
 			}
 			}
 		}

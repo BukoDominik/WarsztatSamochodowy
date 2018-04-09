@@ -117,6 +117,20 @@ public class Order {
 		this.priceOfComponents = priceOfComponents;
 		this.hours = hours;
 	}
+	public Order(Date orderDate, Date orderStart, int responsibleEmployee, String orderDescribe,
+			String reparationDescribe, String status, int vehicle, Double priceOfComponents, Double hours, int id) {
+		super();
+		this.orderDate = orderDate;
+		this.orderStart = orderStart;
+		this.responsibleEmployee = responsibleEmployee;
+		this.orderDescribe = orderDescribe;
+		this.reparationDescribe = reparationDescribe;
+		this.status = status;
+		this.vehicle = vehicle;
+		this.priceOfComponents = priceOfComponents;
+		this.hours = hours;
+		this.id = id;
+	}
 	public Order() {
 		super();
 	}
